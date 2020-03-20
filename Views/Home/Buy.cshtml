@@ -1,0 +1,40 @@
+﻿@model BookStore.Models.Purchase
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3>Форма оформления покупки</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div>
+    @Html.ValidationSummary()
+    <input type="hidden" value="@ViewBag.BookId" name="BookId" />
+    <p>
+
+        <label>Введите свое имя</label><br />
+
+        @Html.EditorFor(x => x.Person)
+
+
+    </p>
+    <p>
+
+        <label>Введите адрес</label><br />
+
+        @Html.EditorFor(x => x.Address)
+
+
+    </p>
+    <p><button type="submit" class="btn btn-primary">Отправить</button></p>
+
+</div>
+}
+
+<div>
+    @Html.ActionLink("К списку книг", "Index")
+</div>

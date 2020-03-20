@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Редактировать книгу";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model BookStore.Models.Book
+
+<h2>Книга № @Model.Id</h2>
+
+@using (Html.BeginForm("EditBook", "Book", FormMethod.Post))
+{
+<fieldset>
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        <p>
+            <div class="editor-label">
+                @Html.LabelFor(m => m.Name, "Название книги")
+            </div>
+          
+            <div class="editor-field">
+                @Html.EditorFor(m => m.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+                </div>
+
+        </p>
+        </div>
+            <div class="form-group">
+                <p>
+                    <div class="editor-label">
+                        @Html.LabelFor(m => m.Author, "Автор")
+                    </div>
+                   
+                    <div class="editor-field">
+                        @Html.EditorFor(m => m.Author)
+                        @Html.ValidationMessageFor(model => model.Author)
+                        </div>
+                </p>
+                </div>
+                    <div class="form-group">
+                        <p>
+                            <div class="editor-label">
+                                @Html.LabelFor(m => m.Price, "Цена")
+                            </div>
+                            
+                            <div class="editor-field">
+                                @Html.EditorFor(m => m.Price)
+                                @Html.ValidationMessageFor(model => model.Price)
+                                </div>
+                        </p>
+                        </div>
+                            <div class="form-group">
+                                <p>
+                                    @Html.LabelFor(m => m.GenreId, "Жанр")
+                                    <br />
+                                    @Html.DropDownListFor(m => m.GenreId, ViewBag.Genres as SelectList)
+                                </p>
+                                </div>
+                                    <div class="form-group">
+                                        <p>
+                                            @Html.LabelFor(m => m.CountryId, "Страна производства")
+                                            <br />
+                                            @Html.DropDownListFor(m => m.CountryId, ViewBag.Countries as SelectList)
+                                        </p>
+                                        </div>
+                                            <div class="form-group">
+                                                <p>
+                                                    @Html.LabelFor(m => m.LanguageId, "Язык издания")
+                                                    <br />
+                                                    @Html.DropDownListFor(m => m.LanguageId, ViewBag.Languages as SelectList)
+                                                </p>
+                                                </div>
+                                                    <div class="form-group">
+                                                        <p>
+                                                            @Html.LabelFor(m => m.CoverId, "Вид обложки")
+                                                            <br />
+                                                            @Html.DropDownListFor(m => m.CoverId, ViewBag.Covers as SelectList)
+                                                        </p>
+                                                        </div>
+                                                            <p><input type="submit" class="btn btn-primary" value="Отправить" /></p>
+</fieldset>
+}
+<p></p>
+<div>
+    @Html.ActionLink("К списку книг", "Index")
+</div>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BookStore.Models.Book>
+
+@{
+    ViewBag.Title = "BookStore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Каталог книг</h2>
+
+<p>
+    @Html.ActionLink("Создать новую", "Create")
+</p>
+<p></p>
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr class="header">
+                <td><p>Название книги</p></td>
+                <td><p>Автор</p></td>
+                <td><p>Цена</p></td>
+                <td><p>Жанр</p></td>
+                <td><p>Страна производства</p></td>
+                <td><p>Язык издания</p></td>
+                <td><p>Вид обложки</p></td>
+               
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td><p>@Html.DisplayFor(modelItem => item.Name)</p></td>
+                    <td><p>@Html.DisplayFor(modelItem => item.Author)</p></td>
+                    <td><p>@Html.DisplayFor(modelItem => item.Price)</p></td>
+                    <td><p>@Html.DisplayFor(modelItem => item.Genre.GenreName)</p></td>
+                    <td><p>@Html.DisplayFor(modelItem => item.Country.CountryName)</p></td>
+                    <td><p>@Html.DisplayFor(modelItem => item.Language.LanguageName)</p></td>
+                    <td><p>@Html.DisplayFor(modelItem => item.Cover.CoverName)</p></td>
+                    <td>
+                        <p>
+                            @Html.ActionLink("Изменить", "EditBook", new { id = item.Id }) |
+
+                            @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                        </p>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,59 @@
+﻿@model BookStore.Models.BooksListViewModel
+@{
+    ViewBag.Title = "BookStore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div>
+        <h2>Заказы</h2>
+        <form method="get">
+            <div class="form-inline">
+
+                <label class="control-label">Код книги: </label>
+
+                @Html.DropDownList("BookId", Model.BookIds as SelectList,
+                        htmlAttributes: new { @class = "form-control" })
+
+                <label class="control-label">Клиент: </label>
+                @Html.DropDownList("Person", Model.Persons as SelectList,
+                        htmlAttributes: new { @class = "form-control" })
+
+
+
+                <input type="submit" value="Фильтр" class="btn btn-primary" />
+
+            </div>
+        </form>
+        <p></p>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <td><p>ID книги</p></td>
+                    <td><p>Клиент</p></td>
+                    <td><p>Адрес</p></td>
+                    <td><p>Дата заказа</p></td>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Purchases)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Person)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
